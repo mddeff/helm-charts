@@ -60,7 +60,7 @@ Create CA DNS
 */}}
 {{- define "step-certificates.dns" -}}
 {{- if .Values.ca.dns -}}
-{{- .Values.ca.dns -}}
+{{- printf "%s,%s.%s.svc.cluster.local,127.0.0.1" .Values.ca.dns (include "step-certificates.fullname" .) .Release.Namespace -}}
 {{- else -}}
 {{- printf "%s.%s.svc.cluster.local,127.0.0.1" (include "step-certificates.fullname" .) .Release.Namespace -}}
 {{- end -}}
